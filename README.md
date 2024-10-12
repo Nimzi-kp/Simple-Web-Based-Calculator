@@ -21,7 +21,7 @@ A calculator with enhanced logic handling, providing a different approach to the
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/Nimzi-kp/Simple-Web-Based-Calculators.git
+   git clone https://github.com/Nimzi-kp/Simple-Web-Based-Calculator.git
 2. **Navigate to the project directory:**
    ```sh
    cd Simple-Web-Based-Calculators
