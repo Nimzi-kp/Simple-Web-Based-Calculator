@@ -31,4 +31,7 @@ A calculator with enhanced logic handling, providing a different approach to the
 - Add support for advanced mathematical functions.
 - Improve the overall design and responsiveness.
 
+## License
+This project is open source and available under the [MIT License](License)
+
 **Feel free to contribute to this project by opening issues or submitting pull requests**
