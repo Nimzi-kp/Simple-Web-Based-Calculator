@@ -1,4 +1,12 @@
+let newCalculation=true
+
 function cliked(val){
+    if(newCalculation){
+        document.getElementById('screen').value=""
+        newCalculation=false
+        if(val=='.'){
+            document.getElementById("screen").value="0"
+    }
     document.getElementById('screen').value+=val
 }
 
