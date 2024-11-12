@@ -1,4 +1,4 @@
-let newCalculation=true
+let newCalculation;
 
 function cliked(val){
     if(newCalculation){
@@ -18,6 +18,7 @@ function equalCliked(){
     var text=document.getElementById("screen").value
     var result=eval(text)
     document.getElementById("screen").value=result
+    newCalculation=true
 }
 function backspace() {
     let display = document.getElementById("screen");
