@@ -6,6 +6,7 @@ function cliked(val){
         newCalculation=false
         if(val=='.'){
             document.getElementById("screen").value="0"
+        }
     }
     document.getElementById('screen').value+=val
 }
