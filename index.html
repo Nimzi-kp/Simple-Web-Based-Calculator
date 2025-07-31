@@ -1,40 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Calculator</title>
 
-    <style>
-        .container {
-          height: 200px;
-          position: relative;
-          padding-top: 600px;
-        }
-        
-        .center {
-          margin: 0;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
 
-        .btn{
-            width: 100px;
-            background: rgb(67, 158, 238);
-        }
-    </style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 40px 60px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      text-align: center;
+      color: #ffffff;
+      max-width: 400px;
+      width: 90%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card h2 {
+      margin-bottom: 30px;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px 10px 0;
+      padding: 10px 25px;
+      font-size: 16px;
+      font-weight: 500;
+      color: white;
+      background: #1f7fe5;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #2691d9;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 0 15px #1f7fe5;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
 </head>
-<body style="background: black;">
-    <div class="container">
-        <div class="center">
-          <h2 style="color: aliceblue; margin-left: -45px;">which calculater do you want</h2>
-          <a href="calculator-1/index.html"><button class="btn">one</button></a>
-          <a href="calculator-2/index.html"><button class="btn">two</button></a>
-          <a href="calculator-3/index.html"><button class="btn">three</button></a>
-        </div>
-    </div>
+<body>
+  <div class="card">
+    <h2>Which Calculator Do You Want?</h2>
+    <a href="calculator-1/index.html" class="btn">Calculator 1</a>
+    <a href="calculator-2/index.html" class="btn">Calculator 2</a>
+    <a href="calculator-3/index.html" class="btn">Calculator 3</a>
+  </div>
 </body>
 </html>
