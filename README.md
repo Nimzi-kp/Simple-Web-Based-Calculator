@@ -1,37 +1,87 @@
-# Simple Web-Based Calculators
 
-This repository contains two different web-based calculators built using HTML, CSS, and JavaScript. 
-Each calculator has a unique way of handling operations and functionalities.
 
-## Calculator-1
-A straightforward calculator that supports basic arithmetic operations, including addition, subtraction, multiplication, and division. Features include:
-- **Basic Operations**: Addition, subtraction, multiplication, and division.
-- **User Interface**: Clean and intuitive design for easy use.
-- **Additional Functions**: Clear screen and backspace options for correcting inputs.
-- **Responsive Design**: Adaptable to different screen sizes.
+## 🧮 Simple Web-Based Calculator
 
-## Calculator-2
-A calculator with enhanced logic handling, providing a different approach to the user experience. Features include:
-- **Distinct Logic**: Separate handling for number and operator inputs.
-- **User Interface**: Simple and user-friendly with similar layout to Calculator-1.
-- **Additional Functions**: Clear screen and backspace options.
-- **Responsive Design**: Works well on various devices and screen sizes.
+This project contains **three different web calculators**, each showcasing different UI/UX approaches and levels of interactivity using HTML, CSS, and JavaScript.
 
-## Usage
+A landing page allows users to choose which calculator they want to use.
 
-1. **Clone the repository:**
-   ```sh
+---
+
+### 🔗 Live Preview
+
+**👉 [Try it on GitHub Pages](https://nimzi-kp.github.io/Simple-Web-Based-Calculator/)**
+
+---
+
+### 📁 Project Structure
+
+```
+Simple-Web-Based-Calculator/
+├── calculator-1/       # Basic functional calculator
+├── calculator-2/       # Calculator with enhanced styling
+├── calculator-3/       # Futuristic-themed calculator (newly added)
+├── index.html          # Landing page to choose calculator
+├── LICENSE             # MIT License
+└── README.md           # Project description
+```
+
+---
+
+### 💡 Features
+
+* ✅ Clean, responsive designs
+* ✅ Supports basic arithmetic operations
+* ✅ Click or keyboard-based input (varies per version)
+* ✅ Stylish, evolving UI across the three versions
+* ✅ Interactive landing page
+
+---
+
+### 📌 Calculator Breakdown
+
+| Version      | Description                                       |
+| ------------ | ------------------------------------------------- |
+| Calculator 1 | Basic calculator with minimal UI                  |
+| Calculator 2 | Enhanced buttons, layout, and styling             |
+| Calculator 3 | Futuristic UI with centered layout and animations |
+
+---
+
+### 🛠 Technologies Used
+
+* HTML5
+* CSS3
+* JavaScript
+
+---
+
+### 🚀 How to Use
+
+1. Clone the repository:
+
+   ```bash
    git clone https://github.com/Nimzi-kp/Simple-Web-Based-Calculator.git
-2. **Navigate to the project directory:**
-   ```sh
-   cd Simple-Web-Based-Calculators
-3. **Open ```index.html``` in your browser to start using either calculator**
+   cd Simple-Web-Based-Calculator
+   ```
 
-## Future Enhancements
-- Add support for advanced mathematical functions.
-- Improve the overall design and responsiveness.
+2. Open `index.html` in any web browser.
 
-## License
-This project is open source and available under the [MIT License](LICENSE)
+3. Click any button to open the desired calculator.
 
-**Feel free to contribute to this project by opening issues or submitting pull requests**
+---
+
+### 👤 Author
+
+**KP**
+GitHub: [@Nimzi-kp](https://github.com/Nimzi-kp)
+
+---
+
+### 📄 License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+---
+
+
