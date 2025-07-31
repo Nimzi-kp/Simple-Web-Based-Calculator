@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-indigo-900 via-purple-800 to-gray-900">
+  <div class="bg-[#B5A8D5] rounded-2xl w-full max-w-md min-h-[450px] flex flex-col pt-4">
+    <!-- Display -->
+    <div class="p-4">
+      <input
+        id="display"
+        type="text"
+        class="w-full bg-white text-right text-3xl font-semibold outline-none border border-[#211C84] rounded-xl p-4"
+        autocomplete="off"
+        spellcheck="false"
+        readonly
+      />
+    </div>
+
+    <!-- Buttons -->
+    <div class="grid grid-cols-4 gap-3 p-4 text-xl font-medium flex-grow">
+      <button class="btn col-span-2 bg-gray-200 text-[#3A59D1] rounded-2xl" data-val="C">C</button>
+      <button class="btn col-span-2 bg-gray-200 text-[#3A59D1] rounded-2xl" data-val="⌫">⌫</button>
+
+      <button class="btn bg-gray-200 text-[#3A59D1] rounded-2xl" data-val="(">(</button>
+      <button class="btn bg-gray-200 text-[#3A59D1] rounded-2xl" data-val=")">)</button>
+      <button class="btn bg-gray-200 text-[#3A59D1] rounded-2xl" data-val="%">%</button>
+      <button class="btn bg-gray-200 text-[#3A59D1] rounded-2xl" data-val="/">÷</button>
+
+      <button class="btn bg-white rounded-2xl" data-val="7">7</button>
+      <button class="btn bg-white rounded-2xl" data-val="8">8</button>
+      <button class="btn bg-white rounded-2xl" data-val="9">9</button>
+      <button class="btn bg-gray-200 text-[#3A59D1] rounded-2xl" data-val="*">×</button>
+
+      <button class="btn bg-white rounded-2xl" data-val="4">4</button>
+      <button class="btn bg-white rounded-2xl" data-val="5">5</button>
+      <button class="btn bg-white rounded-2xl" data-val="6">6</button>
+      <button class="btn bg-gray-200 text-[#3A59D1] rounded-2xl" data-val="-">−</button>
+
+      <button class="btn bg-white rounded-2xl" data-val="1">1</button>
+      <button class="btn bg-white rounded-2xl" data-val="2">2</button>
+      <button class="btn bg-white rounded-2xl" data-val="3">3</button>
+      <button class="btn bg-gray-200 text-[#3A59D1] rounded-2xl" data-val="+">+</button>
+
+      <button class="btn bg-white rounded-2xl" data-val="0">0</button>
+      <button class="btn bg-white rounded-2xl" data-val="00">00</button>
+      <button class="btn bg-white rounded-2xl" data-val=".">.</button>
+      <button class="btn bg-[#211C84] text-white rounded-2xl" data-val="=">=</button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const display = document.getElementById('display');
+    const buttons = document.querySelectorAll('.btn');
+    let justEvaluated = false;
+    
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => handleInput(btn.dataset.val));
+    });
+
+    window.addEventListener('keydown', e => {
+      const allowedKeys = '0123456789+-*/.%()';
+      if (allowedKeys.includes(e.key)) {
+        e.preventDefault();
+        handleInput(e.key);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        handleInput('=');
+      } else if (e.key === 'Backspace') {
+        e.preventDefault();
+        handleInput('⌫');
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        handleInput('C');
+      }
+    });
+
+    function handleInput(val) {
+  if (val === 'C') {
+    display.value = '';
+    justEvaluated = false;
+  } else if (val === '⌫') {
+    display.value = display.value.slice(0, -1);
+    justEvaluated = false;
+  } else if (val === '=') {
+    try {
+      const result = parseExpression(display.value);
+      display.value = isNaN(result) ? 'Error' : Number(result.toFixed(10)).toString();
+    } catch (e) {
+      display.value = 'Error';
+    }
+    justEvaluated = true;
+  } else {
+    if (justEvaluated && !isNaN(val) || val === '.') {
+      display.value = val;
+    } else {
+      display.value += val;
+    }
+    justEvaluated = false;
+  }
+
+  display.scrollLeft = display.scrollWidth;
+}
+
+    function parseExpression(expr) {
+      const outputQueue = [];
+      const operatorStack = [];
+      const precedence = { '+': 1, '-': 1, '*': 2, '/': 2, '%': 2 };
+      const associativity = { '+': 'L', '-': 'L', '*': 'L', '/': 'L', '%': 'L' };
+      const tokens = expr.match(/\d+\.?\d*|\.\d+|[+\-*/%()]|\S/g);
+      if (!tokens) throw new Error("Invalid expression");
+
+      for (let token of tokens) {
+        if (!isNaN(token)) {
+          outputQueue.push(parseFloat(token));
+        } else if ('+-*/%'.includes(token)) {
+          while (
+            operatorStack.length &&
+            '+-*/%'.includes(operatorStack[operatorStack.length - 1]) &&
+            (
+              (associativity[token] === 'L' && precedence[token] <= precedence[operatorStack[operatorStack.length - 1]]) ||
+              (associativity[token] === 'R' && precedence[token] < precedence[operatorStack[operatorStack.length - 1]])
+            )
+          ) {
+            outputQueue.push(operatorStack.pop());
+          }
+          operatorStack.push(token);
+        } else if (token === '(') {
+          operatorStack.push(token);
+        } else if (token === ')') {
+          while (operatorStack.length && operatorStack[operatorStack.length - 1] !== '(') {
+            outputQueue.push(operatorStack.pop());
+          }
+          if (!operatorStack.length) throw new Error("Mismatched parentheses");
+          operatorStack.pop();  // Remove '('
+        } else {
+          throw new Error("Unknown token");
+        }
+      }
+
+      while (operatorStack.length) {
+        const op = operatorStack.pop();
+        if (op === '(' || op === ')') throw new Error("Mismatched parentheses");
+        outputQueue.push(op);
+      }
+
+      const stack = [];
+      for (let token of outputQueue) {
+        if (typeof token === 'number') {
+          stack.push(token);
+        } else {
+          if (stack.length < 2) throw new Error("Insufficient operands");
+          const b = stack.pop();
+          const a = stack.pop();
+          if (token === '/' && b === 0) throw new Error("Division by zero");
+          switch (token) {
+            case '+': stack.push(a + b); break;
+            case '-': stack.push(a - b); break;
+            case '*': stack.push(a * b); break;
+            case '/': stack.push(a / b); break;
+            case '%': stack.push((a * b) / 100); break;
+            default: throw new Error("Unknown operator");
+          }
+        }
+      }
+
+      if (stack.length !== 1) throw new Error("Invalid expression");
+      return stack[0];
+    }
+  </script>
+</body>
+</html>
